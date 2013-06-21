@@ -1,0 +1,20 @@
+{
+  "id": "danh",
+  "password": "",
+  "groups": [
+    "admin",
+    "sysadmin",
+    "monadmin"
+  ],
+  "home": "/home/danh",
+  "shell": "/bin/bash",
+  "comment": "Daniel Hanganu",
+  "nagios": {
+    "pager": "",
+    "email": "daniel.hanganu@tipconsulting.net"
+  },
+  "htpasswd": "{SHA}O2gA49NXABjU+7/d1YOaA+LEqxM=",
+  "ssh_keys": [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCHbIDqtQvkJynIwGXBJGhbbHfVYn62UMsGRhnjAOLsdnNGFuNsjQZJ/SaGmnYNNkwvSWfBJUAVluI1J3J9Jf4TsiNf/gmazqXrP6jkFsIVUSgmEyChvATHhBk+636asc+2PQeyQhYzJromfbcgOEgZpWiP1xbX5hZcmNnoVYvSWUO6/dwqiBFAR3oXe92RxDGcazl677mjFfUecpRAeK31/GFq2Ynnr3RXcWi9pE02lp5H2s9udLv4Zt1IwfLl30yVCBUt0W56bHgqThwXxxnGBIKCnRD4jyvP8pdbvFF6GMEwGoZYYY+6G9ntOT8UP7p0hvk3HS9HxnOOyzJwZhyt dev"
+  ]
+}

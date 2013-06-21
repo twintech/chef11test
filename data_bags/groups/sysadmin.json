@@ -1,0 +1,6 @@
+{
+  "id": "sysadmin",
+  "gid" : "3000",
+  "members" : [ "mpopa" , "danh" , "fdrescher", "icingaadmin" ]
+}
+
