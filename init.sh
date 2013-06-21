@@ -5,5 +5,5 @@ knife data bag from file users data_bags/users/*.json
 knife role from file chef-server.rb
 
 
-knife role from file dev.pem
+knife role from file dev.rb
 knife cookbook upload -aV
