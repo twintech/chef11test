@@ -4,6 +4,4 @@ knife data bag create users
 knife data bag from file users data_bags/users/*.json
 knife role from file chef-server.rb
 
-
-knife role from file dev.pem
 knife cookbook upload -aV
