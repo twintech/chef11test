@@ -12,9 +12,6 @@ def check_inputs(user, password)
 end
 
 action :create do
-  username = new_resource.user
-  password = new_resource.password
-  is_admin = new_resource.admin
   execute "create-chef-user #{new_resource.user}" do
      command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f /root/.chef/#{new_resource.user}.pem"
      not_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$' "
@@ -24,7 +21,7 @@ end
 
 # Removes a user from the sudoers group
 action :remove do
-  execute "create-chef-user #{username}" do
+  execute "create-chef-user #{new_resource.user}" do
     cmd "/opt/chef-server/embedded/bin/knife user delete -d #{new_resource.user}"
     only_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$'"
   end

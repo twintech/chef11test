@@ -8,13 +8,13 @@ end
 if users.nil? || users.empty?
   Chef::Log.info("No users returned from data bag search.")
   users = Array.new
-end
-
-users.each do |u|
-  chefserverconfig_user u['user'] do
-    user u['user']
-    password u['password']
-    admin u['admin']
-    action :create
+else
+  users.each do |u|
+    chefserverconfig_user u['id'] do
+      user u['id']
+      password u['password']
+      admin u['admin']
+      action :create
+    end
   end
 end
