@@ -1,9 +1,10 @@
 name "chef-server"
 description "CHEF Server"
 recipes "recipe[sudo]",
+  "recipe[users::sysadmin"",
   "recipe[ntp]",
   "recipe[timezone]",
-  "recipe[chefserverconfig::users]"
+  "recipe[chefserverconfig::chef-users]"
       
 override_attributes(
 )
