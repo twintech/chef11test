@@ -7,7 +7,7 @@ end
 
 def check_inputs(user, password)
   if user == nil || password == nil 
-    Chef::Application.fatal!('You must provide a chef user and password, optionally the admin 'true' or 'false' value!')
+    Chef::Application.fatal!('You must provide a chef user and password, optionally the admin "true" or "false" value!')
   end
 end
 
