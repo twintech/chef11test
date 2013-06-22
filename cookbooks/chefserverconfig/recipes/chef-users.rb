@@ -10,9 +10,10 @@ if users.nil? || users.empty?
   users = Array.new
 else
   users.each do |u|
+    secure_password = `pwgen -1 -c 12`
     chefserverconfig_user u['id'] do
       user u['id']
-      password u['password']
+      password secure_password
       admin u['admin']
       action :create
     end

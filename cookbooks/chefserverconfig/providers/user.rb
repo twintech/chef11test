@@ -13,10 +13,11 @@ end
 
 action :create do
   execute "create-chef-user #{new_resource.user}" do
-     command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f /root/.chef/#{new_resource.user}.pem"
+     command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f /root/.chef/#{new_resource.user}.pem && echo '#{new_resource.password}' >/root/.chef/#{new_resource.user}.webui_pass && chmod 600 /root/.chef/#{new_resource.user}.webui_pass"
      not_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$' "
      creates "/root/.chef/#{new_resource.user}.pem"
   end
+
 end
 
 # Removes a user from the sudoers group
