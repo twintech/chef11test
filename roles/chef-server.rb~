@@ -1,5 +1,9 @@
 name "chef-server"
 description "CHEF Server"
-run_list("recipe[chef-server-config::chef-users]")
+recipes "recipe[sudo]",
+  "recipe[ntp]",
+  "recipe[timezone]",
+  "recipe[chefserverconfig::users]"
+      
 override_attributes(
 )
