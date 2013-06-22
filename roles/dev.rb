@@ -1,6 +1,6 @@
 name "dev"
 description "Staging role."
-recipes "recipe[users::sysadmin]",
+recipes "recipe[users::sysadmins]",
   "recipe[sudo]",
   "recipe[ntp]",
   "recipe[timezone]"
