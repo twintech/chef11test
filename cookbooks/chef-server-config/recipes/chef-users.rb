@@ -10,11 +10,11 @@ if users.nil? || users.empty?
   users = Array.new
 end
 
-users.each do |user| 
-	bash "knife create user #{user['id']}" do	
-		code <<-EOH
-			/opt/chef-server/embedded/bin/knife user create #{user['id']} -d -y --user admin --password blablabla1 --admin --file ~/.chef/#{user['id']}.pem
-		EOH
-		not_if { ::File.exists?("~/.chef/#{user['id']}.pem") }		
-	end
+users.each do |user|
+  chef-server-config_chefuser "#{user}" do
+    user "#{user['user']}"
+    password "#{user['password'}"
+    admin "#{user['admin'}"
+    action :create
+  end
 end
