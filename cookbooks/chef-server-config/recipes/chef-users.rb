@@ -11,7 +11,7 @@ if users.nil? || users.empty?
 end
 
 users.each do |u|
-  chef-server-config_chefuser "user" do
+  chefserverconfig-chefuser "lalala" do
     user u['user']
     password u['password']
     admin u['admin']
