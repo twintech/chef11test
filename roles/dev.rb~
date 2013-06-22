@@ -1,6 +1,6 @@
 name "dev"
 description "Staging role."
-recipes "recipe[chef-server-config::users]",
+recipes "recipe[users::sysadmins]",
   "recipe[sudo]",
   "recipe[ntp]",
   "recipe[timezone]"
@@ -14,4 +14,3 @@ override_attributes({
     }
   }
 })
-

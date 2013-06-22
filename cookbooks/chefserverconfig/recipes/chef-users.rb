@@ -12,10 +12,10 @@ else
   users.each do |u|
     secure_password = `echo -n $(pwgen -1 -c 12)`
     chefserverconfig_user u['id'] do
+      action :create
       user u['id']
       password secure_password
       admin u['admin']
-      action :create
     end
   end
 end

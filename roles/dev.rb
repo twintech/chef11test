@@ -9,9 +9,9 @@ override_attributes({
   "app_environment" => "dev",
   "authorization" => {
     "sudo" => {
+      "include_sudoers_d" => true,
       "passwordless" => true,
       "groups" => ["sysadmin"]
     }
   }
 })
-
