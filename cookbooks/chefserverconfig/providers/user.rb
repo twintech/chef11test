@@ -15,10 +15,10 @@ action :create do
   username = new_resource.user
   password = new_resource.password
   is_admin = new_resource.admin
-  execute "create-chef-user #{username}" do
-     command "/opt/chef-server/embedded/bin/knife user create #{username} -d --password #{password} -f /root/.chef/#{username}.pem"
-     not_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{username}$' "
-     creates "/root/.chef/#{username}.pem"
+  execute "create-chef-user #{new_resource.user}" do
+     command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f /root/.chef/#{new_resource.user}.pem"
+     not_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$' "
+     creates "/root/.chef/#{new_resource.user}.pem"
   end
 end
 
@@ -26,7 +26,7 @@ end
 action :remove do
   execute "create-chef-user #{username}" do
     cmd "/opt/chef-server/embedded/bin/knife user delete -d #{new_resource.user}"
-    only_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{username}$'"
+    only_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$'"
   end
   resource = file "/etc/sudoers.d/#{new_resource.user}.pem" do
     action :nothing
