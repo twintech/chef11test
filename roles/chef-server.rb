@@ -3,7 +3,7 @@ description "CHEF Server"
 recipes "recipe[sudo]",
   "recipe[ntp]",
   "recipe[timezone]",
-  "recipe[chef-server-config::chef-users]"
+  "recipe[chefserverconfig::users]"
       
 override_attributes(
 )
