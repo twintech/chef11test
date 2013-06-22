@@ -14,3 +14,4 @@ end
 attribute :user,       :kind_of => String,          :default => nil
 attribute :admin,   :equal_to => [true, false],     :default => false
 attribute :password,      :kind_of => String,          :default => nil
+attribute :credentials_dir, :kind_of => String,   :default => "/root/.chef/chef-users"

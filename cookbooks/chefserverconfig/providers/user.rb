@@ -12,10 +12,16 @@ def check_inputs(user, password)
 end
 
 action :create do
+  directory "#{new_resource.credentials_dir}" do
+    owner "root"
+    group "root"
+    mode 0700
+    action :create
+  end
   execute "create-chef-user #{new_resource.user}" do
-     command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f /root/.chef/#{new_resource.user}.pem && echo '#{new_resource.password}' >/root/.chef/#{new_resource.user}.webui_pass && chmod 600 /root/.chef/#{new_resource.user}.webui_pass"
+     command "/opt/chef-server/embedded/bin/knife user create #{new_resource.user} -d --password #{new_resource.password} -f #{new_resource.credentials_dir}/#{new_resource.user}.pem && echo '#{new_resource.password}' >#{new_resource.credentials_dir}/#{new_resource.user}.webui_pass && chmod 600 #{new_resource.credentials_dir}/#{new_resource.user}.*"
      not_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$' "
-     creates "/root/.chef/#{new_resource.user}.pem"
+     creates "#{new_resource.credentials_dir}/#{new_resource.user}.pem"
   end
 
 end
@@ -26,9 +32,13 @@ action :remove do
     cmd "/opt/chef-server/embedded/bin/knife user delete -d #{new_resource.user}"
     only_if "/opt/chef-server/embedded/bin/knife user list | grep -E '^#{new_resource.user}$'"
   end
-  resource = file "/etc/sudoers.d/#{new_resource.user}.pem" do
+  pem_file = file "#{new_resource.credentials_dir}/#{new_resource.user}.pem" do
     action :nothing
   end
-  resource.run_action(:delete)
-  new_resource.updated_by_last_action(true) if resource.updated_by_last_action?
+  webuipass_file = file "#{new_resource.credentials_dir}/#{new_resource.user}.webui_pass" do
+    action :nothing
+  end
+  pem_file.run_action(:delete)
+  pem_file.run_action(:delete)
+  new_resource.updated_by_last_action(true) if pem_file.updated_by_last_action?
 end
