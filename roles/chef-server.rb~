@@ -1,7 +1,6 @@
 name "chef-server"
 description "CHEF Server"
-recipes "recipe[sudo]",
-  "recipe[users::sysadmin"",
+recipes "role[dev]",
   "recipe[ntp]",
   "recipe[timezone]",
   "recipe[chefserverconfig::chef-users]"
