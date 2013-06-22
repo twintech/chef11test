@@ -10,11 +10,11 @@ if users.nil? || users.empty?
   users = Array.new
 end
 
-users.each do |user|
-  chef-server-config_chefuser "#{user['user']}" do
-    user "#{user['user']}"
-    password "#{user['password'}"
-    admin "#{user['admin'}"
+users.each do |u|
+  chef-server-config_chefuser "#{u['user']}" do
+    user u['user']
+    password u['password']
+    admin u['admin']
     action :create
   end
 end
