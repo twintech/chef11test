@@ -18,7 +18,7 @@ action :create do
   execute "create-chef-user #{username}" do
      cmd "/opt/chef/embedded/bin/knife user create #{username} -d --password #{password} -f /root/.chef/#{username}.pem"
      not_if "/opt/chef/embedded/bin/knife user list | grep -E '^#{username}$' "
-     creates /root/.chef/#{username}.pem
+     creates "/root/.chef/#{username}.pem"
   end
 end
 
