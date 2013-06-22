@@ -16,7 +16,7 @@ action :create do
   password = new_resource.password
   is_admin = new_resource.admin
   execute "create-chef-user #{username}" do
-     cmd "/opt/chef/embedded/bin/knife user create #{username} -d --password #{password} -f /root/.chef/#{username}.pem"
+     command "/opt/chef/embedded/bin/knife user create #{username} -d --password #{password} -f /root/.chef/#{username}.pem"
      not_if "/opt/chef/embedded/bin/knife user list | grep -E '^#{username}$' "
      creates "/root/.chef/#{username}.pem"
   end
